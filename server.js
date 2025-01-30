@@ -15,8 +15,10 @@ const PORT = process.env.PORT
 
 app.use(express.json())
 app.use(cors({
-    origin: 'https://project-gestionando.vercel.app'
+    origin: 'https://project-gestionando.vercel.app',
+    credentials: true
 }))
+app.options("*", cors())
 
 app.get('/', (req,res) => {
     res.send("Welcome")

@@ -6,7 +6,7 @@ export const authCheck = async(req,res,next) => {
         {
             return res.status(401).json("Inavlid token")
         }
-        const extractedToken = token.slice(7)
+        const extractedToken = token.split(" ")[1];
         const checkToken = jwt.verify(extractedToken, process.env.SECRET_KEY)
         if(!checkToken){
             return res.status(403).json({error: "Invalid Token"})

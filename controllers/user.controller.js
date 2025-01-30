@@ -33,7 +33,7 @@ export const login = async(req,res,next) => {
         if(!findUserForPasswordCompare){
            return res.status(400).json({error: "User doesnt exist please signin"})
         }
-        const comparePassword = bcrypt.compare(password,findUserForPasswordCompare.password)
+        const comparePassword = await bcrypt.compare(password,findUserForPasswordCompare.password)
         if(!comparePassword){
            return res.status(400).json({error: "password doesnt match"})
         }

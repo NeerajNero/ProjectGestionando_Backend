@@ -15,7 +15,7 @@ const PORT = process.env.PORT
 
 app.use(express.json())
 app.use(cors({
-    origin: 'https://project-gestionando-backend.vercel.app'
+    origin: 'https://project-gestionando.vercel.app'
 }))
 
 app.get('/', (req,res) => {

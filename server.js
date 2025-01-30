@@ -11,14 +11,13 @@ import taskRoutes from './routes/task.routes.js'
 dotenv.config()
 const app = express()
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 
 app.use(express.json())
 app.use(cors({
     origin: 'https://project-gestionando.vercel.app',
     credentials: true
 }))
-app.options("*", cors())
 
 app.get('/', (req,res) => {
     res.send("Welcome")
@@ -34,7 +33,8 @@ app.use('/api/teams', teamRoutes)
 app.use('/api/tasks', taskRoutes)
 
 app.use((error,req,res,next) => {
-    res.status(500).json(`${process.env.NODE_ENV === "development" ? error : "Internal server error"}`)
+    console.error(error);
+    res.status(500).json(`${process.env.NODE_ENV === "development" ? error.message : "Internal server error"}`)
 })
 
 app.listen(PORT, () => {

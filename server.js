@@ -18,6 +18,9 @@ app.use(cors({
     origin: 'http://localhost:5173'
 }))
 
+app.get('/', (req,res) => {
+    res.send("Welcome")
+})
 app.use('/api/auth', userRoutes)
 
 app.use('/api/projects', projectRoutes)
